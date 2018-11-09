@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+td:nth-last-child(3) {
+    width: 60%;
+}
+
+td:nth-last-child(2) {
+    width: *;
+}
+
+td:nth-last-child(1) {
+    width: *;
+}
+
+</style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <td class='r1'>Alfreds Futterkiste</td>
+    <td class='r1'>Maria Anders</td>
+    <td class='r1' style="display:none">x</td>
+  </tr>
+  <tr>
+    <td class='r2'>Centro comercial Moctezuma</td>
+    <td class='r2'>Francisco Chang</td>
+    <td class='r2' style="display:none">x</td>
+  </tr>
+  <tr>
+    <td class='r3'>Ernst Handel</td>
+    <td class='r3'>Roland Mendel</td>
+    <td class='r3' style="display:none"><button>x</button></td>
+  </tr>
+  <tr>
+    <td class='r4'>Island Trading</td>
+    <td class='r4'>Helen Bennett</td>
+    <td class='r4' style="display:none">x</td>
+  </tr>
+
+</table>
+
+<script>
+  document.querySelectorAll("tr").forEach( a => {a.onmouseover = (a) => myMouseOver(a);  a.onmouseout = a => myMouseOut(a)} );
+  
+  function myMouseOver(a) {
+  
+    if( event.relatedTarget.className ===  event.target.className ) return;
+    if( event.relatedTarget.nodeName === 'BUTTON' || event.target.nodeName === 'BUTTON' ) return;
+    
+    const myTr = a.srcElement.parentElement;
+    myTr.querySelector("td:nth-last-child(1)").style.display = "block";
+    myTr.querySelector("td:nth-last-child(2)").style.display = "none";
+  }
+
+  function myMouseOut(a) {
+    if( event.relatedTarget.className ===  event.target.className ) return;  	
+    if( event.relatedTarget.nodeName === 'BUTTON' || event.target.nodeName === 'BUTTON' ) return;
+    
+    const myTr = a.srcElement.parentElement;
+    myTr.querySelector("td:nth-last-child(1)").style.display = "none";
+    myTr.querySelector("td:nth-last-child(2)").style.display = "block";
+  }
+
+</script>
+</body>
+</html>
