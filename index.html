@@ -90,15 +90,13 @@ button {
 <script>
     
     document.querySelectorAll("button").forEach(a => a.onclick = () => alert('C'));
-	document.querySelectorAll("tr").forEach( a => {a.onmouseover = () => mouseOverOut(1);  a.onmouseout = () => mouseOverOut(0)} );
+    document.querySelectorAll("tr").forEach( a => {a.onmouseenter = () => mouseOverOut(1);  a.onmouseleave = () => mouseOverOut(0)} );
     
     
     function mouseOverOut(inOut) {
     	const a = ["none","block"];
-		if( event.relatedTarget.className ===  event.target.className ) return;
-		if( event.relatedTarget.nodeName === 'BUTTON' || event.target.nodeName === 'BUTTON' ) return;
-
-    	const tr = event.srcElement.parentElement;
+	    
+    	const tr = event.currentTarget;
     	tr.querySelector("td:nth-last-child(1)").style.display = a[0 ^ inOut];
         tr.querySelector("td:nth-last-child(2)").style.display = a[1 ^ inOut]
     }
